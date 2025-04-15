@@ -9,14 +9,18 @@ const sampleExpenses = [
 ];
 
 const ExpenseList = ({ expenses = sampleExpenses, filter }) => {
-  const filteredExpenses = filter
-    ? expenses.filter(exp => exp.category === filter)
-    : expenses;
+  // Removed duplicate filteredExpenses declaration and unused handleDelete logic
+
+  const [expensesState, setExpensesState] = React.useState(expenses);
 
   const handleDelete = (indexToDelete) => {
-    const updatedExpenses = filteredExpenses.filter((_, index) => index !== indexToDelete);
-    console.log('Updated Expenses:', updatedExpenses); // Replace this with state update logic if needed
+    const updatedExpenses = expensesState.filter((_, index) => index !== indexToDelete);
+    setExpensesState(updatedExpenses);
   };
+
+  const filteredExpenses = filter
+    ? expensesState.filter(exp => exp.category === filter)
+    : expensesState;
 
   return (
     <div className="expense-list">
