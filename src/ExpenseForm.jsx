@@ -23,8 +23,14 @@ const ExpenseForm = ({ onAddExpense }) => {
     <form className="expense-form" onSubmit={handleSubmit}>
       <input
         name="name"
-        placeholder="Expense name"
+        placeholder="Your name"
         value={formData.name}
+        onChange={handleChange}
+      />
+      <input
+        name="title"
+        placeholder="Expense name"
+        value={formData.title}
         onChange={handleChange}
       />
       <input

@@ -13,6 +13,11 @@ const ExpenseList = ({ expenses = sampleExpenses, filter }) => {
     ? expenses.filter(exp => exp.category === filter)
     : expenses;
 
+  const handleDelete = (indexToDelete) => {
+    const updatedExpenses = filteredExpenses.filter((_, index) => index !== indexToDelete);
+    console.log('Updated Expenses:', updatedExpenses); // Replace this with state update logic if needed
+  };
+
   return (
     <div className="expense-list">
       <h2>Expenses</h2>
@@ -23,8 +28,9 @@ const ExpenseList = ({ expenses = sampleExpenses, filter }) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Amount ($)</th>
+              <th>Amount (ksh)</th>
               <th>Category</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +39,9 @@ const ExpenseList = ({ expenses = sampleExpenses, filter }) => {
                 <td>{expense.name}</td>
                 <td>{expense.amount}</td>
                 <td>{expense.category}</td>
+                <td>
+                  <button onClick={() => handleDelete(index)}>Delete</button>  
+                </td>
               </tr>
             ))}
           </tbody>
